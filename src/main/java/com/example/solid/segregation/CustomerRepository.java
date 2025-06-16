@@ -1,7 +1,6 @@
 package com.example.solid.segregation;
 
-public class CustomerRepository  implements Add<Customer>, 
-        Update<Customer,Integer>, Remove<Customer,Integer>{
+public class CustomerRepository  implements Repository<Customer,Integer>{
 
     @Override
         public Customer get(Integer id) {
