@@ -24,11 +24,13 @@ public class OperationsImpl {
 
         var result = clousure.apply(8);
         System.out.println(result.apply(3)); //11
-        System.out.println(result.apply(100)); //11
+        System.out.println(result.apply(100)); //108
 
         var result1 = clousure1.apply(8);
         System.out.println(result1.apply(3)); //11
-        System.out.println(result1.apply(100)); //11
+        System.out.println(result1.apply(100)); //108
+
+        
 
     }
     public static Integer sum(Integer a, Integer b){
