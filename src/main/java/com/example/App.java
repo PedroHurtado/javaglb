@@ -1,10 +1,14 @@
 package com.example;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import com.example.solid.Pinguino;
 import com.example.solid.PrintAves;
@@ -18,6 +22,13 @@ public class App
 {
     public static void main( String[] args )
     {        
+        List<Integer> lisint = new ArrayList<>();
+        var result = lisint.stream().filter(v->v%2==0);
+        result.forEach(System.out::println);
+        //result.collect(Collectors.toList());
+
+        //result.forEach(System.out::println);
+
         UUID id = UUID.randomUUID();
         var unique = new Unique(id);
         var unique1 = new Unique(UUID.randomUUID());
@@ -39,5 +50,49 @@ public class App
     }
     private static void method(LocalDateTime date){
         System.out.println("He entrado al metodo");
+    }
+
+    public static void streamoperations(){
+        List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        // Buscar el primero
+        var first = numeros.stream().findFirst();
+        if(first.isPresent()){
+            System.out.println(first.get());
+        }
+
+        // Buscar el último
+        numeros.stream().reduce((a, b) -> b).ifPresent(u -> System.out.println("Último: " + u));
+
+        // Filtrar el primer par
+        numeros.stream()
+               .filter(n -> n % 2 == 0)
+               .findFirst()
+               .ifPresent(p -> System.out.println("Primer par: " + p));
+
+        // Filtrar el último par
+        numeros.stream()
+               .filter(n -> n % 2 == 0)
+               .reduce((a, b) -> b)
+               .ifPresent(u -> System.out.println("Último par: " + u));
+
+        // Filtrar los pares
+        List<Integer> pares = numeros.stream()
+                                     .filter(n -> n % 2 == 0)
+                                     .collect(Collectors.toList());
+        System.out.println("Pares: " + pares);
+
+        // Filtrar los pares y obtener su cuadrado
+        List<Integer> cuadradosPares = numeros.stream()
+                                              .filter(n -> n % 2 == 0)
+                                              .map(n -> n * n)
+                                              .collect(Collectors.toList());
+        System.out.println("Cuadrados de pares: " + cuadradosPares);
+
+        // Sumar los valores
+        int suma = numeros.stream()
+                          .mapToInt(Integer::intValue)
+                          .sum();
+        System.out.println("Suma: " + suma);
     }
 }
