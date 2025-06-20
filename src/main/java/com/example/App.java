@@ -18,16 +18,26 @@ import com.example.uniqueclass.Unique;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {        
-        List<Integer> lisint = new ArrayList<>();
-        var result = lisint.stream().filter(v->v%2==0);
-        result.forEach(System.out::println);
-        //result.collect(Collectors.toList());
+public class App {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("Ana", "Juan", "María", "Pedro");
 
-        //result.forEach(System.out::println);
+        // Stream secuencial
+        names.stream()
+                .filter(name -> name.length() > 3)
+                .forEach(System.out::println);
+
+        // Stream paralelo
+        names.parallelStream()
+                .filter(name -> name.length() > 3)
+                .forEach(System.out::println);
+
+        /*List<Integer> lisint = new ArrayList<>();
+        var result = lisint.stream().filter(v -> v % 2 == 0);
+        result.forEach(System.out::println);
+        // result.collect(Collectors.toList());
+
+        // result.forEach(System.out::println);
 
         UUID id = UUID.randomUUID();
         var unique = new Unique(id);
@@ -38,26 +48,28 @@ public class App
         set.add(unique);
         set.add(unique1);
 
-        var pinguino = new Pinguino(5);        
+        var pinguino = new Pinguino(5);
         PrintAves.PrintAveNoVolaora(pinguino, System.out::println);
-        //PrintAves.PrintAveVoladora(pinguino);
-        System.out.println( "Hello World!" );
+        // PrintAves.PrintAveVoladora(pinguino);
+        System.out.println("Hello World!");
         printDate(LocalDateTime.now(), System.out::println);
-        printDate(LocalDateTime.now(), App::method);
+        printDate(LocalDateTime.now(), App::method);*/
     }
-    private static void printDate(LocalDateTime date,Consumer<LocalDateTime> printer){
+
+    private static void printDate(LocalDateTime date, Consumer<LocalDateTime> printer) {
         printer.accept(date);
     }
-    private static void method(LocalDateTime date){
+
+    private static void method(LocalDateTime date) {
         System.out.println("He entrado al metodo");
     }
 
-    public static void streamoperations(){
+    public static void streamoperations() {
         List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         // Buscar el primero
         var first = numeros.stream().findFirst();
-        if(first.isPresent()){
+        if (first.isPresent()) {
             System.out.println(first.get());
         }
 
@@ -66,33 +78,33 @@ public class App
 
         // Filtrar el primer par
         numeros.stream()
-               .filter(n -> n % 2 == 0)
-               .findFirst()
-               .ifPresent(p -> System.out.println("Primer par: " + p));
+                .filter(n -> n % 2 == 0)
+                .findFirst()
+                .ifPresent(p -> System.out.println("Primer par: " + p));
 
         // Filtrar el último par
         numeros.stream()
-               .filter(n -> n % 2 == 0)
-               .reduce((a, b) -> b)
-               .ifPresent(u -> System.out.println("Último par: " + u));
+                .filter(n -> n % 2 == 0)
+                .reduce((a, b) -> b)
+                .ifPresent(u -> System.out.println("Último par: " + u));
 
         // Filtrar los pares
         List<Integer> pares = numeros.stream()
-                                     .filter(n -> n % 2 == 0)
-                                     .collect(Collectors.toList());
+                .filter(n -> n % 2 == 0)
+                .collect(Collectors.toList());
         System.out.println("Pares: " + pares);
 
         // Filtrar los pares y obtener su cuadrado
         List<Integer> cuadradosPares = numeros.stream()
-                                              .filter(n -> n % 2 == 0)
-                                              .map(n -> n * n)
-                                              .collect(Collectors.toList());
+                .filter(n -> n % 2 == 0)
+                .map(n -> n * n)
+                .collect(Collectors.toList());
         System.out.println("Cuadrados de pares: " + cuadradosPares);
 
         // Sumar los valores
         int suma = numeros.stream()
-                          .mapToInt(Integer::intValue)
-                          .sum();
+                .mapToInt(Integer::intValue)
+                .sum();
         System.out.println("Suma: " + suma);
     }
 }
