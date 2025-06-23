@@ -1,18 +1,22 @@
 package com.example;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+//import java.time.LocalDateTime;
+//import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import java.util.function.Consumer;
+import java.util.Scanner;
+//import java.util.Set;
+//import java.util.UUID;
+//import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import com.example.solid.Pinguino;
-import com.example.solid.PrintAves;
-import com.example.uniqueclass.Unique;
+import com.example.paint.core.ShapeRegistry;
+import com.example.paint.shapes.Shape;
+//import com.example.solid.Pinguino;
+//import com.example.solid.PrintAves;
+//import com.example.uniqueclass.Unique;
 
 /**
  * Hello world!
@@ -20,7 +24,24 @@ import com.example.uniqueclass.Unique;
  */
 public class App {
     public static void main(String[] args) {
-        List<String> names = Arrays.asList("Ana", "Juan", "María", "Pedro");
+
+        Scanner scanner = new Scanner(System.in);
+        ShapeRegistry.registerShapes(scanner);
+        
+
+        System.out.println("Figuras disponibles: " + ShapeRegistry.getAvailableShapes());
+        System.out.print("Selecciona una figura: ");
+        String type = scanner.nextLine().toLowerCase();
+
+        Supplier<Shape> factory = ShapeRegistry.getFactory(type);        
+        
+        Shape shape = factory.get();
+        System.out.println(shape);
+        scanner.close();
+
+        
+
+        /*List<String> names = Arrays.asList("Ana", "Juan", "María", "Pedro");
 
         // Stream secuencial
         names.stream()
@@ -30,7 +51,7 @@ public class App {
         // Stream paralelo
         names.parallelStream()
                 .filter(name -> name.length() > 3)
-                .forEach(System.out::println);
+                .forEach(System.out::println);*/
 
         /*List<Integer> lisint = new ArrayList<>();
         var result = lisint.stream().filter(v -> v % 2 == 0);
@@ -55,14 +76,14 @@ public class App {
         printDate(LocalDateTime.now(), System.out::println);
         printDate(LocalDateTime.now(), App::method);*/
     }
-
+    /*
     private static void printDate(LocalDateTime date, Consumer<LocalDateTime> printer) {
         printer.accept(date);
     }
 
     private static void method(LocalDateTime date) {
         System.out.println("He entrado al metodo");
-    }
+    }*/
 
     public static void streamoperations() {
         List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5, 6);
