@@ -2,6 +2,7 @@ package com.example.paint.shapes;
 
 import java.util.UUID;
 
+
 public abstract class ShapeAbstract {
     public final UUID id;
     private double x,y;

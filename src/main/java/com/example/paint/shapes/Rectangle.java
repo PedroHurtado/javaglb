@@ -2,6 +2,7 @@ package com.example.paint.shapes;
 
 import java.util.UUID;
 
+
 public class Rectangle extends ShapeAbstract implements Shape {
 
     private  double width,height;
