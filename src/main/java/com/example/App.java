@@ -19,6 +19,7 @@ import com.example.paint.core.ShapeRegistry;
 import com.example.paint.shapes.Circle;
 import com.example.paint.shapes.Rectangle;
 import com.example.paint.shapes.Shape;
+import com.fasterxml.jackson.core.type.TypeReference;
 //import com.example.paint.shapes.ShapeAbstract;
 //import com.example.solid.Pinguino;
 //import com.example.solid.PrintAves;
@@ -41,11 +42,10 @@ public class App {
                 ObjectMapper mapper = JsonMapper.create();               
                 try{
                         //String json = mapper.writeValueAsString(shapes.toArray(new Shape[0]));
-                        String json = mapper.writeValueAsString(shapes);
+                        String json = mapper.writeValueAsString(rectangle);
                         System.out.println(json);
                         
-                        List<Shape> deserializedShapes = mapper.readValue(json, 
-                        mapper.getTypeFactory().constructCollectionType(List.class, Shape.class));
+                        var result = mapper.readValue(json, new TypeReference<Rectangle>() {});
                         System.out.println("fin");
                 }
                 catch(Exception e){
