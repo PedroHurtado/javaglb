@@ -43,9 +43,13 @@ public class App {
                         //String json = mapper.writeValueAsString(shapes.toArray(new Shape[0]));
                         String json = mapper.writeValueAsString(shapes);
                         System.out.println(json);
+                        
+                        List<Shape> deserializedShapes = mapper.readValue(json, 
+                        mapper.getTypeFactory().constructCollectionType(List.class, Shape.class));
+                        System.out.println("fin");
                 }
                 catch(Exception e){
-
+                        System.out.println(e);
                 }
                 
 
