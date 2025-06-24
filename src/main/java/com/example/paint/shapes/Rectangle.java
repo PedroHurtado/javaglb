@@ -2,8 +2,6 @@ package com.example.paint.shapes;
 
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 
@@ -11,13 +9,25 @@ public class Rectangle extends ShapeAbstract implements Shape {
 
     private double width, height;
 
-    @JsonCreator
+    /*@JsonCreator
     public Rectangle(
             @JsonProperty("id") UUID id,
             @JsonProperty("x") double x,
             @JsonProperty("y") double y,
             @JsonProperty("width") double width,
             @JsonProperty("height") double height) {
+        super(id, x, y);
+        this.width = width;
+        this.height = height;
+
+    }*/
+
+    public Rectangle(
+            UUID id,
+            double x,
+            double y,
+            double width,
+            double height) {
         super(id, x, y);
         this.width = width;
         this.height = height;

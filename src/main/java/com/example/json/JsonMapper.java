@@ -10,6 +10,7 @@ import org.reflections.Reflections;
 
 import com.example.paint.shapes.Shape;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 public class JsonMapper {
     public static ObjectMapper create() {
@@ -17,8 +18,10 @@ public class JsonMapper {
 
         mapper.addMixIn(Shape.class, ShapeMixIn.class);
         
+        mapper.registerModule(new ParameterNamesModule());
+        
         registerSubtypesAutomatically(mapper, Shape.class, "com.example"); 
-
+        
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         return mapper;
@@ -35,12 +38,12 @@ public class JsonMapper {
     }
 
     private static String getTypeName(Class<?> clazz) {
-        
+
         JsonTypeName annotation = clazz.getAnnotation(JsonTypeName.class);
         if (annotation != null) {
             return annotation.value();
         }
-        
+
         return clazz.getSimpleName().toLowerCase();
     }
 }

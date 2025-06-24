@@ -2,19 +2,18 @@ package com.example.paint.shapes;
 
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 public class Circle extends ShapeAbstract implements Shape {
     public double radio;
 
-    @JsonCreator
+    
     public Circle(
-            @JsonProperty("id") UUID id,
-            @JsonProperty("x") double x,
-            @JsonProperty("y") double y,
-            @JsonProperty("radio") double radio) {
+            UUID id,
+            double x,
+            double y,
+            double radio) {
         super(id, x, y);
         this.radio = radio;
     }
