@@ -34,19 +34,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class App {
         public static void main(String[] args) {
 
-                var rectangle = new Rectangle(UUID.randomUUID(), 0, 0, 10, 20);
+                //var rectangle = new Rectangle(UUID.randomUUID(), 0, 0, 10, 20);
                 List<Shape> shapes = List.of(
                                 new Circle(UUID.randomUUID(), 10, 10, 5),
                                 new Rectangle(UUID.randomUUID(), 0, 0, 10, 20));
 
                 ObjectMapper mapper = JsonMapper.create();               
                 try{
-                        //String json = mapper.writeValueAsString(shapes.toArray(new Shape[0]));
-                        String json = mapper.writeValueAsString(rectangle);
+                        String json = mapper.writeValueAsString(shapes.toArray(new Shape[0]));
+                        //String json = mapper.writeValueAsString(rectangle);
                         System.out.println(json);
                         
-                        var result = mapper.readValue(json, new TypeReference<Rectangle>() {});
-                        System.out.println("fin");
+                        var result = mapper.readValue(json, new TypeReference<List<Shape>>() {});
+                        System.out.println(result);
                 }
                 catch(Exception e){
                         System.out.println(e);
