@@ -2,6 +2,7 @@ package com.example.paint.core;
 
 import org.reflections.Reflections;
 
+import com.example.paint.commands.CommandContext;
 import com.example.paint.shapes.Shape;
 import com.example.paint.shapes.interfaces.InteractiveCreatable;
 
@@ -11,7 +12,7 @@ import java.util.function.Supplier;
 public class ShapeRegistry {
     private static final Map<String, Supplier<Shape>> registry = new HashMap<>();
 
-    public static void registerShapes(Scanner scanner) {
+    public static void registerShapes(CommandContext context) {
         Reflections reflections = new Reflections("com.example"); 
 
         Set<Class<?>> creators = reflections.getTypesAnnotatedWith(RegisterShape.class);
@@ -25,7 +26,7 @@ public class ShapeRegistry {
 
             try {
                 InteractiveCreatable instance = (InteractiveCreatable) clazz.getDeclaredConstructor().newInstance();
-                registry.put(annotation.value().toLowerCase(), () -> instance.createFromInput(scanner));
+                registry.put(annotation.value().toLowerCase(), () -> instance.createFromInput(context));
             } catch (Exception e) {
                 System.err.println("Error al instanciar " + clazz.getName());
                 e.printStackTrace();

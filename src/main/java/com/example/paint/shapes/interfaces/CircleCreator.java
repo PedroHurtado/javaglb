@@ -1,7 +1,8 @@
 package com.example.paint.shapes.interfaces;
-import java.util.Scanner;
+
 import java.util.UUID;
 
+import com.example.paint.commands.CommandContext;
 import com.example.paint.core.RegisterShape;
 import com.example.paint.shapes.Circle;
 import com.example.paint.shapes.Shape;
@@ -10,13 +11,15 @@ import com.example.paint.shapes.Shape;
 public class CircleCreator implements InteractiveCreatable {
 
     @Override
-    public Shape createFromInput(Scanner scanner) {
-        System.out.print("x: ");
-        double x = Double.parseDouble(scanner.nextLine());
-        System.out.print("y: ");
-        double y = Double.parseDouble(scanner.nextLine());
-        System.out.print("radio: ");
-        double r = Double.parseDouble(scanner.nextLine());
+    public Shape createFromInput(CommandContext context) {
+        var writer = context.getOut();
+        var input = context.getScanner();
+        writer.print("x: ");
+        double x = Double.parseDouble(input.nextLine());
+        writer.print("y: ");
+        double y = Double.parseDouble(input.nextLine());
+        writer.print("radio: ");
+        double r = Double.parseDouble(input.nextLine());
         return new Circle(UUID.randomUUID(), x, y, r);
     }
     

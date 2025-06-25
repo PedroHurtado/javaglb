@@ -1,9 +1,9 @@
 package com.example.paint.shapes.interfaces;
 
-import java.util.Scanner;
 
+import com.example.paint.commands.CommandContext;
 import com.example.paint.shapes.Shape;
 
 public interface InteractiveCreatable {
-    Shape createFromInput(Scanner scanner);
+    Shape createFromInput(CommandContext context);
 }

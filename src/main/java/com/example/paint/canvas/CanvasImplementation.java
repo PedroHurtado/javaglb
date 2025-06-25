@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.example.paint.core.InputWriter;
 import com.example.paint.shapes.Shape;
 import com.example.paint.storage.Storage;
 
@@ -12,9 +13,11 @@ public class CanvasImplementation implements Canvas {
 
     private final List<Shape> shapes = new ArrayList<>();
     private final Storage storage;
+    private final InputWriter writer;
 
-    public CanvasImplementation(Storage storage) {
+    public CanvasImplementation(Storage storage, InputWriter writer) {
         this.storage = storage;
+        this.writer = writer;
     }
 
     @Override
@@ -24,7 +27,7 @@ public class CanvasImplementation implements Canvas {
 
     @Override
     public void listShapes() {
-        shapes.forEach(System.out::println);
+        shapes.forEach(writer::println);
     }
 
     @Override

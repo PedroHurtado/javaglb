@@ -1,25 +1,32 @@
 package com.example.paint.commands;
 
-import java.util.Scanner;
 
 import com.example.paint.canvas.Canvas;
+import com.example.paint.core.InputReader;
+import com.example.paint.core.InputWriter;
 
 public class CommandContext {
     private final Canvas canvas;
-    private final Scanner scanner;
+    private final InputReader scanner;
     private final Runnable onExit;
-    public CommandContext(Canvas canvas, Scanner scanner, Runnable onExit) {
+    private final InputWriter out;
+    public CommandContext(Canvas canvas, InputReader scanner, Runnable onExit, InputWriter out) {
         this.canvas = canvas;
         this.scanner = scanner;
         this.onExit = onExit;
+        this.out = out;
     }
+    
     public Canvas getCanvas() {
         return canvas;
     }
-    public Scanner getScanner() {
+    public InputReader getScanner() {
         return scanner;
     }
     public Runnable getOnExit() {
         return onExit;
+    }
+    public InputWriter getOut(){
+        return out;
     }
 }

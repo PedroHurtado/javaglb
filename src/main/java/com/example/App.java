@@ -56,7 +56,7 @@ public class App {
                 // Consumer<Integer> onExit = (status)->System.exit(status);
 
                 Scanner scanner = new Scanner(System.in);
-                ShapeRegistry.registerShapes(scanner);
+                //ShapeRegistry.registerShapes(scanner);
 
                 System.out.println("Figuras disponibles: " + ShapeRegistry.getAvailableShapes());
                 System.out.print("Selecciona una figura: ");
@@ -67,6 +67,7 @@ public class App {
                         Shape shape = factory.get();
                         System.out.println(shape);
                 }
+                scanner.close();
 
                 /*
                  * List<String> names = Arrays.asList("Ana", "Juan", "María", "Pedro");
