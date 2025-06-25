@@ -14,7 +14,9 @@ public class AppPaintImplementation implements AppPaint {
         this.context = new CommandContext(
             canvas, 
             reader, 
-            writer, ()->isRunning=false);
+            writer, 
+            ()->isRunning=false
+        );
 
     }
     @Override
