@@ -10,7 +10,7 @@ import com.example.paint.core.ShapeRegistry;
 import com.example.paint.shapes.Shape;
 
 @RegisterCommand(value = "add", description = "Agregar una figura")
-public class AddShapeCommandFactory implements CommandFactory {
+public class CommandFactoryAddShape implements CommandFactory {
 
     @Override
     public Command create(CommandContext context) {
