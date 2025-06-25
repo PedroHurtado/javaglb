@@ -2,10 +2,9 @@ package com.example.paint.canvas;
 
 import java.util.UUID;
 
-import com.example.paint.shapes.Shape;
 
-public interface Canvas {
-    void addShape(Shape shape);
+public interface Canvas extends CanvasAddShape {
+    
     void listShapes();
     void removeShape(UUID id);
     void moveShape(UUID id, double dx, double dy);
