@@ -19,6 +19,7 @@ public class AppPaintImplementation implements AppPaint {
     }
     @Override
     public void run() {
+        isRunning =true;
         //registrar los shapes
         //registar los commands
         while (isRunning) {
