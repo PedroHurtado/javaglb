@@ -10,11 +10,12 @@ public class CommandContext {
     private final InputReader scanner;
     private final Runnable onExit;
     private final InputWriter out;
-    public CommandContext(Canvas canvas, InputReader scanner, Runnable onExit, InputWriter out) {
+    public CommandContext(Canvas canvas, InputReader scanner, InputWriter out, Runnable onExit) {
         this.canvas = canvas;
         this.scanner = scanner;
-        this.onExit = onExit;
         this.out = out;
+        this.onExit = onExit;
+    
     }
     
     public Canvas getCanvas() {
