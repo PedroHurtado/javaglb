@@ -6,10 +6,16 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.example.paint.shapes.Shape;
+import com.example.paint.storage.Storage;
 
 public class CanvasImplementation implements Canvas {
 
     private final List<Shape> shapes = new ArrayList<>();
+    private final Storage storage;
+
+    public CanvasImplementation(Storage storage) {
+        this.storage = storage;
+    }
 
     @Override
     public void addShape(Shape shape) {
@@ -33,12 +39,13 @@ public class CanvasImplementation implements Canvas {
 
     @Override
     public void saveToJson(String filename) {
-        throw new UnsupportedOperationException("Unimplemented method 'saveToJson'");
+        storage.save(filename, shapes);
     }
 
     @Override
     public void loadFromJson(String filename) {
-        throw new UnsupportedOperationException("Unimplemented method 'loadFromJson'");
+        shapes.clear();
+        shapes.addAll(storage.load(filename));
     }
 
     private Optional<Shape> findShapeById(UUID id) {
