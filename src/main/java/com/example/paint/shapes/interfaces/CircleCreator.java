@@ -11,7 +11,7 @@ public class CircleCreator implements InteractiveCreatable {
 
     @Override
     public Shape createFromInput(Scanner scanner) {
-         System.out.print("x: ");
+        System.out.print("x: ");
         double x = Double.parseDouble(scanner.nextLine());
         System.out.print("y: ");
         double y = Double.parseDouble(scanner.nextLine());
