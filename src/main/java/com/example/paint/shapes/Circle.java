@@ -29,7 +29,7 @@ public class Circle extends ShapeAbstract implements Shape {
 
     @Override
     public String toString() {
-        return "Circle [id=" + getId() + ", radio=" + getRadio() + ", x=" + getX() + ", y" + getY()
+        return "Circle [id=" + getId() + ", radio=" + getRadio() + ", x=" + getX() + ", y=" + getY()
                 + "]";
     }
 }

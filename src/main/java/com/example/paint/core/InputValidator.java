@@ -6,11 +6,11 @@ public final class InputValidator {
     private InputValidator() {
     }
 
-    public static double inputDouble(InputWriter writer, InputReader reader, String message) {
+    public static double readDouble(InputWriter writer, InputReader reader, String message) {
         while (true) {
+            writer.print(message);
+            var entry = reader.nextLine();
             try {
-                writer.print(message);
-                var entry = reader.nextLine();
                 return Double.parseDouble(entry);
             } catch (NullPointerException | NumberFormatException e) {
                 writer.println("El valor introducido no es correcto");
@@ -18,15 +18,27 @@ public final class InputValidator {
         }
     }
 
-    public static UUID inputUUID(InputWriter writer, InputReader reader, String message) {
+    public static UUID readUUID(InputWriter writer, InputReader reader, String message) {
         while (true) {
+            writer.print(message);
+            var entry = reader.nextLine();
             try {
-                writer.print(message);
-                var entry = reader.nextLine();
                 return UUID.fromString(entry);
             } catch (IllegalArgumentException e) {
                 writer.println("El valor introducido no es correcto");
             }
         }
     }
+
+    public static String readNonEmpty(InputReader scanner, InputWriter writer, String prompt) {
+        while (true) {
+            writer.print(prompt);
+            String input = scanner.nextLine();
+            if (input != null && !input.trim().isEmpty()) {
+                return input;
+            }
+            writer.println("No puede estar vacío.");
+        }
+    }
+
 }
