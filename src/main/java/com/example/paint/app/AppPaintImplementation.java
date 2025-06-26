@@ -34,21 +34,27 @@ public class AppPaintImplementation implements AppPaint {
         while (isRunning) {
             showMenu(writer);
             String choice = promptUserChoice(writer, reader);
-            ExecutionResult result = executeChoice(choice);
-
-            switch (result) {
-                case INVALID -> pause("Opción inválida.", writer, reader);
-                case VALID -> pause("Pulse una tecla para continuar", writer, reader);
-                case EXIT -> {}
+            try {                
+                ExecutionResult result = executeChoice(choice);
+                switch (result) {
+                    case INVALID -> pause("Opción inválida.", writer, reader);
+                    case VALID -> pause("Pulse una tecla para continuar", writer, reader);
+                    case EXIT -> {
+                    }
+                }
+            } catch (Exception e) {
+                writer.println(e.getMessage());
+                reader.nextLine();
             }
+
         }
-        reader.close();        
+        reader.close();
     }
 
     private void initialize() {
         var reflections = Ioc.createReflection("com.example");
-        isRunning = true;        
-        ShapeRegistry.registerShapes(context,reflections);
+        isRunning = true;
+        ShapeRegistry.registerShapes(context, reflections);
         CommandRegistry.registerCommands(reflections);
     }
 
@@ -56,8 +62,7 @@ public class AppPaintImplementation implements AppPaint {
         ConsoleUtils.clearConsole();
         writer.println("\n--- MENÚ ---");
         CommandRegistry.getCommands().forEach(
-            (key, entry) -> writer.printf("%s: %s%n", key, entry.description)
-        );
+                (key, entry) -> writer.printf("%s: %s%n", key, entry.description));
     }
 
     private String promptUserChoice(InputWriter writer, InputReader reader) {
