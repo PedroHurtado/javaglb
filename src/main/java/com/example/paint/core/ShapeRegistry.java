@@ -12,9 +12,8 @@ import java.util.function.Supplier;
 public class ShapeRegistry {
     private static final Map<String, Supplier<Shape>> registry = new HashMap<>();
 
-    public static void registerShapes(CommandContext context) {
-        Reflections reflections = new Reflections("com.example"); 
-
+    public static void registerShapes(CommandContext context, Reflections reflections) {
+              
         Set<Class<?>> creators = reflections.getTypesAnnotatedWith(RegisterShape.class);
 
         for (Class<?> clazz : creators) {

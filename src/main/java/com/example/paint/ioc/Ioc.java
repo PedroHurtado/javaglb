@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import org.reflections.Reflections;
+
 import com.example.paint.app.AppPaint;
 import com.example.paint.app.AppPaintImplementation;
 import com.example.paint.canvas.Canvas;
@@ -15,6 +17,8 @@ import com.example.paint.core.InputWriterImplementation;
 import com.example.paint.storage.JsonStorage;
 import com.example.paint.storage.Storage;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 
 public final class Ioc {
     private Ioc(){}
@@ -33,6 +37,9 @@ public final class Ioc {
     private static Scanner creatScanner(InputStream in ){
         return new Scanner(in);
     } 
+    public static Reflections createReflection(String packaString){
+        return new Reflections(packaString); 
+    }
     public static AppPaint createApp(
         ObjectMapper mapper,
         InputStream in,

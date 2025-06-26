@@ -8,6 +8,7 @@ import com.example.paint.core.ConsoleUtils;
 import com.example.paint.core.InputReader;
 import com.example.paint.core.InputWriter;
 import com.example.paint.core.ShapeRegistry;
+import com.example.paint.ioc.Ioc;
 
 public class AppPaintImplementation implements AppPaint {
 
@@ -45,9 +46,10 @@ public class AppPaintImplementation implements AppPaint {
     }
 
     private void initialize() {
-        isRunning = true;
-        ShapeRegistry.registerShapes(context);
-        CommandRegistry.registerCommands();
+        var reflections = Ioc.createReflection("com.example");
+        isRunning = true;        
+        ShapeRegistry.registerShapes(context,reflections);
+        CommandRegistry.registerCommands(reflections);
     }
 
     private void showMenu(InputWriter writer) {

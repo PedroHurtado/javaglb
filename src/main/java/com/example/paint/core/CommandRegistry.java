@@ -19,8 +19,7 @@ public class CommandRegistry {
         }
     }
 
-    public static void registerCommands() {
-        Reflections reflections = new Reflections("com.example"); 
+    public static void registerCommands(Reflections reflections) {        
         
         Set<Class<?>> commandFactories = reflections.getTypesAnnotatedWith(RegisterCommand.class);
 
