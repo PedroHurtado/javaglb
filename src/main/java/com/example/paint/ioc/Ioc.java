@@ -17,6 +17,7 @@ import com.example.paint.storage.Storage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public final class Ioc {
+    private Ioc(){}
     private static Storage createStorage(ObjectMapper mapper){
         return new JsonStorage(mapper);
     }
