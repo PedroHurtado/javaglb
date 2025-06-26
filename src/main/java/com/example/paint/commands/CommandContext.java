@@ -5,6 +5,9 @@ import com.example.paint.canvas.Canvas;
 import com.example.paint.core.InputReader;
 import com.example.paint.core.InputWriter;
 
+import lombok.Getter;
+
+@Getter
 public class CommandContext {
     private final Canvas canvas;
     private final InputReader scanner;
@@ -16,18 +19,12 @@ public class CommandContext {
         this.out = out;
         this.onExit = onExit;
     
-    }
-    
-    public Canvas getCanvas() {
-        return canvas;
-    }
-    public InputReader getScanner() {
-        return scanner;
-    }
-    public Runnable getOnExit() {
-        return onExit;
-    }
-    public InputWriter getOut(){
-        return out;
-    }
+    }   
 }
+
+/*public record CommandContext(Canvas canvas, InputReader scanner, InputWriter out, Runnable onExit) {
+}
+ context.getCanvas() No
+ context.cancas()
+*/
+

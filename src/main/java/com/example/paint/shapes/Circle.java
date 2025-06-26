@@ -2,9 +2,11 @@ package com.example.paint.shapes;
 
 import java.util.UUID;
 
+import lombok.Getter;
 
 
 
+@Getter
 public class Circle extends ShapeAbstract implements Shape {
     public double radio;
 
@@ -18,9 +20,7 @@ public class Circle extends ShapeAbstract implements Shape {
         this.radio = radio;
     }
 
-    public double getRadio() {
-        return radio;
-    }
+    
 
     @Override
     public double area() {

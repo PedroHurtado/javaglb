@@ -2,10 +2,14 @@ package com.example.paint.shapes;
 
 import java.util.UUID;
 
+import lombok.Getter;
 
+@Getter
 public abstract class ShapeAbstract {
-    public final UUID id;
+    
+    private final UUID id;
     private double x,y;
+
     protected ShapeAbstract(UUID id, double x, double y) {
         this.id = id;
         this.x = x;
@@ -14,15 +18,6 @@ public abstract class ShapeAbstract {
     public void move(double dx,double dy){
         x+=dx;
         y+=dy;
-    }
-    public UUID getId() {
-        return id;
-    }
-    public double getX() {
-        return x;
-    }
-    public double getY() {
-        return y;
-    }   
+    }    
     
 }

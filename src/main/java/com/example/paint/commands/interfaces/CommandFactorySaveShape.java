@@ -13,7 +13,7 @@ import com.example.paint.core.RegisterCommand;
 public class CommandFactorySaveShape implements CommandFactory {
 
     @Override
-    public Command create(CommandContext context) {
+    public Command create(CommandContext context) {        
         InputReader scanner = context.getScanner();
         InputWriter writer = context.getOut();
         writer.print("Introduce el nombre del archivo para guardar: ");

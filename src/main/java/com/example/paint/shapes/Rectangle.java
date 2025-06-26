@@ -2,9 +2,11 @@ package com.example.paint.shapes;
 
 import java.util.UUID;
 
+import lombok.Getter;
 
 
 
+@Getter
 public class Rectangle extends ShapeAbstract implements Shape {
 
     private double width, height;
@@ -38,14 +40,7 @@ public class Rectangle extends ShapeAbstract implements Shape {
     public double area() {
         return height * width;
     }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
+    
 
     @Override
     public String toString() {
