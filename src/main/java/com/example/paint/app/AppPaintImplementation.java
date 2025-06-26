@@ -1,40 +1,82 @@
 package com.example.paint.app;
 
 import com.example.paint.canvas.Canvas;
+import com.example.paint.commands.Command;
 import com.example.paint.commands.CommandContext;
+import com.example.paint.core.CommandRegistry;
+import com.example.paint.core.ConsoleUtils;
 import com.example.paint.core.InputReader;
 import com.example.paint.core.InputWriter;
-
+import com.example.paint.core.ShapeRegistry;
 
 public class AppPaintImplementation implements AppPaint {
-    
+
     private Boolean isRunning;
     private CommandContext context = null;
-    public AppPaintImplementation(InputReader reader, InputWriter writer, Canvas canvas) {        
+
+    public AppPaintImplementation(InputReader reader, InputWriter writer, Canvas canvas) {
         this.context = new CommandContext(
-            canvas, 
-            reader, 
-            writer, 
-            ()->isRunning=false
-        );
+                canvas,
+                reader,
+                writer,
+                () -> isRunning = false);
 
     }
+
     @Override
     public void run() {
-        isRunning =true;
-        //registrar los shapes
-        //registar los commands
+        var writer = context.getOut();
+        var reader = context.getScanner();
+
+        initialize();
+
         while (isRunning) {
-            //limpiar la consola
-            //pintar el menu
-            //obtener la entrada de menu
-            //comprobar que el comando existe
-            //conmmand.execute()
-            //limpiar la consola
+            showMenu(writer);
+            String choice = promptUserChoice(writer, reader);
+            ExecutionResult result = executeChoice(choice);
+
+            switch (result) {
+                case INVALID -> pause("Opción inválida.", writer, reader);
+                case VALID -> pause("Pulse una tecla para continuar", writer, reader);
+                case EXIT -> {}
+            }
         }
-        context.getScanner().close();
-        
+        reader.close();        
     }
-    
-    
+
+    private void initialize() {
+        isRunning = true;
+        ShapeRegistry.registerShapes(context);
+        CommandRegistry.registerCommands();
+    }
+
+    private void showMenu(InputWriter writer) {
+        ConsoleUtils.clearConsole();
+        writer.println("\n--- MENÚ ---");
+        CommandRegistry.getCommands().forEach(
+            (key, entry) -> writer.printf("%s: %s%n", key, entry.description)
+        );
+    }
+
+    private String promptUserChoice(InputWriter writer, InputReader reader) {
+        writer.print("Seleccione una opción: ");
+        return reader.nextLine();
+    }
+
+    private ExecutionResult executeChoice(String choice) {
+        var cmdEntry = CommandRegistry.getCommands().get(choice);
+        if (cmdEntry == null)
+            return ExecutionResult.INVALID;
+
+        Command command = cmdEntry.factory.create(context);
+        command.execute();
+
+        return isRunning ? ExecutionResult.VALID : ExecutionResult.EXIT;
+    }
+
+    private void pause(String message, InputWriter writer, InputReader reader) {
+        writer.print(message);
+        reader.nextLine();
+    }
+
 }

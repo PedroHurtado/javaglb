@@ -5,27 +5,30 @@ package com.example;
 import java.util.Arrays;
 //import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
-import java.util.UUID;
+//import java.util.Scanner;
+//import java.util.UUID;
 //import java.util.function.Consumer;
 //import java.util.Set;
 //import java.util.UUID;
 //import java.util.function.Consumer;
-import java.util.function.Supplier;
+//import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import com.example.json.JsonMapper;
-import com.example.paint.core.ShapeRegistry;
-import com.example.paint.shapes.Circle;
-import com.example.paint.shapes.Rectangle;
-import com.example.paint.shapes.Shape;
-import com.fasterxml.jackson.core.type.TypeReference;
+
+//import com.example.json.JsonMapper;
+//import com.example.paint.core.ShapeRegistry;
+//import com.example.paint.shapes.Circle;
+//import com.example.paint.shapes.Rectangle;
+//import com.example.paint.shapes.Shape;
+//import com.fasterxml.jackson.core.type.TypeReference;
 //import com.example.paint.shapes.ShapeAbstract;
 //import com.example.solid.Pinguino;
 //import com.example.solid.PrintAves;
 //import com.example.uniqueclass.Unique;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.example.paint.ioc.*;
 
 /**
  * Hello world!
@@ -34,8 +37,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class App {
         public static void main(String[] args) {
 
+                var mapper = JsonMapper.create();
+                var app = Ioc.createApp(mapper,System.in,System.out);
+                app.run();
+
                 //var rectangle = new Rectangle(UUID.randomUUID(), 0, 0, 10, 20);
-                List<Shape> shapes = List.of(
+                /*List<Shape> shapes = List.of(
                                 new Circle(UUID.randomUUID(), 10, 10, 5),
                                 new Rectangle(UUID.randomUUID(), 0, 0, 10, 20));
 
@@ -50,12 +57,12 @@ public class App {
                 }
                 catch(Exception e){
                         System.out.println(e);
-                }
+                }*/
                 
 
                 // Consumer<Integer> onExit = (status)->System.exit(status);
 
-                Scanner scanner = new Scanner(System.in);
+                /*Scanner scanner = new Scanner(System.in);
                 //ShapeRegistry.registerShapes(scanner);
 
                 System.out.println("Figuras disponibles: " + ShapeRegistry.getAvailableShapes());
@@ -67,7 +74,7 @@ public class App {
                         Shape shape = factory.get();
                         System.out.println(shape);
                 }
-                scanner.close();
+                scanner.close();*/
 
                 /*
                  * List<String> names = Arrays.asList("Ana", "Juan", "María", "Pedro");

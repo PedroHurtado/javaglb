@@ -49,9 +49,9 @@ public class Rectangle extends ShapeAbstract implements Shape {
 
     @Override
     public String toString() {
-        return "Rectangle [getId()=" + getId() + "area()=" + area() + ", getX()=" + getX() + ", getWidth()="
-                + getWidth() + ", getY()="
-                + getY() + ", getHeight()=" + getHeight() + "]";
+        return "Rectangle [id=" + getId() + ", area=" + area() + ", x=" + getX() + ", width="
+                + getWidth() + ", y="
+                + getY() + ", height=" + getHeight() + "]";
     }
 
 }

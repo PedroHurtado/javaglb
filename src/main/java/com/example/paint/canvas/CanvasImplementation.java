@@ -27,7 +27,13 @@ public class CanvasImplementation implements Canvas {
 
     @Override
     public void listShapes() {
-        shapes.forEach(writer::println);
+        if (shapes.size()>0){
+            shapes.forEach(writer::println);
+        }
+        else{
+            writer.println("No existen figuras");
+        }
+        
     }
 
     @Override
