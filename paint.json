@@ -1,0 +1,14 @@
+[ {
+  "type" : "circle",
+  "id" : "4dadf1f8-a1ce-4fe6-80f6-bb4040448832",
+  "x" : 10.0,
+  "y" : 10.0,
+  "radio" : 5.0
+}, {
+  "type" : "rectangle",
+  "id" : "d3bc72ae-eab0-4edc-992c-11e5dd33edd3",
+  "x" : 10.0,
+  "y" : 10.0,
+  "width" : 10.0,
+  "height" : 10.0
+} ]
